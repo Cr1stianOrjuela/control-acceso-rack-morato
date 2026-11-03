@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00233A">
+    <meta name="description" content="Control de Acceso del Rack de Comunicaciones Morato.">
+    <title>Control de Acceso | Rack Morato</title>
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="./assets/vendor/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="./assets/vendor/choices.js/choices.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Control de Acceso del Rack de Comunicaciones Morato">
+        <span class="access-symbol" aria-hidden="true">
+          <img src="./assets/icons/server.svg" alt="">
+        </span>
+        <span class="brand__text">
+          <strong>Control de Acceso</strong>
+          <span>Rack de Comunicaciones Morato</span>
+        </span>
+      </a>
+      <time class="clock" id="current-time" aria-label="Hora actual"></time>
+    </header>
+
+    <main class="welcome-layout">
+      <section class="access-card" aria-labelledby="access-title">
+        <div class="access-card__accent" aria-hidden="true"></div>
+        <div id="identity-step">
+          <p class="step-kicker">RACK DE COMUNICACIONES MORATO</p>
+          <h1 id="access-title">Te damos la bienvenida al control de acceso</h1>
+          <p class="step-description">Para ingresar o registrar tu salida del Rack de Comunicaciones Morato, escribe tu número de cédula.</p>
+          <form id="identity-form" novalidate>
+            <div class="field field--document">
+              <label for="cedula">
+                <img class="field__icon" src="./assets/icons/id-card.svg" alt="" aria-hidden="true">
+                Número de documento
+              </label>
+              <input id="cedula" name="cedula" type="text" inputmode="numeric" autocomplete="off"
+                placeholder="Escribe tu número de cédula" maxlength="15" aria-describedby="cedula-hint cedula-error" autofocus required>
+              <span id="cedula-hint" class="field-hint">Escríbelo sin puntos ni espacios.</span>
+              <span id="cedula-error" class="field-error" hidden></span>
+            </div>
+            <button class="button button--primary button--wide" type="submit" aria-live="polite">
+              Continuar <img class="button__icon" src="./assets/icons/arrow-right.svg" alt="" aria-hidden="true">
+            </button>
+          </form>
+          <p class="process-note"><span class="process-note__mark" aria-hidden="true"></span>Así mantenemos el control de los ingresos y salidas del Rack de Comunicaciones Morato.</p>
+        </div>
+
+        <section id="person-step" hidden aria-live="polite">
+          <div class="step-heading">
+            <span class="step-number step-number--green" aria-hidden="true"><img class="step-number__icon" src="./assets/icons/circle-check.svg" alt=""></span>
+            <div class="person-heading">
+              <p class="step-kicker person-kind" id="person-kind">IDENTIDAD CONFIRMADA</p>
+              <h2 id="person-name"></h2>
+            </div>
+          </div>
+          <p id="person-guidance" class="person-guidance"></p>
+
+          <form id="visitor-form" class="visitor-form" novalidate hidden>
+            <div class="first-visit-note">
+              <strong>
+                <img class="inline-icon" src="./assets/icons/user-round-plus.svg" alt="" aria-hidden="true">
+                Datos para tu primera visita
+              </strong>
+              <span>Completa la información para registrar tu ingreso como visitante.</span>
+            </div>
+
+            <section class="form-section form-section--personal" aria-labelledby="visitor-personal-heading">
+              <div class="form-section__heading">
+                <span class="form-section__number">01</span>
+                <div>
+                  <h3 id="visitor-personal-heading">Información personal</h3>
+                  <p>Cuéntanos tus datos básicos.</p>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field field--span-2">
+                  <label for="visitor-name">Nombre completo</label>
+                  <input id="visitor-name" name="Nombre_Completo" type="text" autocomplete="name" maxlength="150" placeholder="Nombre y apellidos" aria-describedby="visitor-name-error" required>
+                  <span id="visitor-name-error" class="field-error" hidden></span>
+                </div>
+                <div class="field field--span-2">
+                  <label for="visitor-email">Correo electrónico</label>
+                  <input id="visitor-email" name="Email" type="email" inputmode="email" autocomplete="email" maxlength="150" placeholder="nombre@empresa.com" aria-describedby="visitor-email-error" required>
+                  <span id="visitor-email-error" class="field-error" hidden></span>
+                </div>
+                <div class="field">
+                  <label for="visitor-rh">RH</label>
+                  <select id="visitor-rh" name="RH" aria-describedby="visitor-rh-error" required>
+                    <option value="">Selecciona tu RH</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                  </select>
+                  <span id="visitor-rh-error" class="field-error" hidden></span>
+                </div>
+                <div class="field">
+                  <label for="visitor-eps">EPS</label>
+                  <input id="visitor-eps" name="EPS" type="text" maxlength="100" placeholder="Nombre de la EPS" aria-describedby="visitor-eps-error" required>
+                  <span id="visitor-eps-error" class="field-error" hidden></span>
+                </div>
+                <div class="field field--span-2">
+                  <label for="visitor-arl">ARL</label>
+                  <input id="visitor-arl" name="ARL" type="text" maxlength="100" placeholder="Nombre de la ARL" aria-describedby="visitor-arl-error" required>
+                  <span id="visitor-arl-error" class="field-error" hidden></span>
+                </div>
+              </div>
+            </section>
+
+            <section class="form-section form-section--contact" aria-labelledby="visitor-contact-heading">
+              <div class="form-section__heading">
+                <span class="form-section__number">02</span>
+                <div>
+                  <h3 id="visitor-contact-heading">Persona de contacto</h3>
+                  <p>Una persona a quien podamos localizar si es necesario.</p>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field field--span-2">
+                  <label for="visitor-contact">Nombre de contacto</label>
+                  <input id="visitor-contact" name="Persona_Contacto" type="text" autocomplete="off" maxlength="150" placeholder="Nombre del contacto" aria-describedby="visitor-contact-error" required>
+                  <span id="visitor-contact-error" class="field-error" hidden></span>
+                </div>
+                <div class="field field--span-2">
+                  <label for="visitor-phone">Teléfono de contacto</label>
+                  <input id="visitor-phone" name="Telefono_Contacto" type="tel" inputmode="numeric" maxlength="30" placeholder="Número de teléfono" aria-describedby="visitor-phone-error" required>
+                  <span id="visitor-phone-error" class="field-error" hidden></span>
+                </div>
+              </div>
+            </section>
+
+            <div class="element-entry">
+              <label class="element-entry__toggle" for="visitor-elements-checkbox">
+                <input id="visitor-elements-checkbox" type="checkbox" aria-controls="visitor-elements-panel" aria-expanded="false">
+                <img class="inline-icon" src="./assets/icons/laptop.svg" alt="" aria-hidden="true">
+                <span>¿Ingresas con herramientas, equipos o elementos?</span>
+              </label>
+              <div id="visitor-elements-panel" class="element-entry__panel" aria-hidden="true">
+                <div class="element-entry__content">
+                  <div class="field element-entry__field">
+                    <label for="visitor-equipment">¿Qué elementos ingresas?</label>
+                    <textarea id="visitor-equipment" aria-describedby="visitor-equipment-hint visitor-equipment-error" rows="2" maxlength="500" placeholder="Describe los elementos" disabled></textarea>
+                    <span id="visitor-equipment-hint" class="field-hint">Por ejemplo: portátil, herramientas o cargadores.</span>
+                    <span id="visitor-equipment-error" class="field-error" hidden></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button id="visitor-entry-button" class="button button--primary button--wide" type="submit" aria-live="polite">
+              Registrar mi ingreso <img class="button__icon" src="./assets/icons/arrow-right.svg" alt="" aria-hidden="true">
+            </button>
+          </form>
+
+          <div id="known-person-actions" hidden>
+            <div id="known-element-entry" class="element-entry">
+              <label class="element-entry__toggle" for="known-elements-checkbox">
+                <input id="known-elements-checkbox" type="checkbox" aria-controls="known-elements-panel" aria-expanded="false">
+                <img class="inline-icon" src="./assets/icons/laptop.svg" alt="" aria-hidden="true">
+                <span>¿Ingresas con herramientas, equipos o elementos?</span>
+              </label>
+              <div id="known-elements-panel" class="element-entry__panel" aria-hidden="true">
+                <div class="element-entry__content">
+                  <div class="field element-entry__field">
+                    <label for="known-equipment">¿Qué elementos ingresas?</label>
+                    <textarea id="known-equipment" aria-describedby="known-equipment-hint known-equipment-error" rows="2" maxlength="500" placeholder="Describe los elementos" disabled></textarea>
+                    <span id="known-equipment-hint" class="field-hint">Por ejemplo: portátil, herramientas o cargadores.</span>
+                    <span id="known-equipment-error" class="field-error" hidden></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button id="action-button" class="button button--primary button--wide" type="button" aria-live="polite"></button>
+          </div>
+          <button id="change-person" class="text-button" type="button"><img class="button__icon" src="./assets/icons/arrow-left.svg" alt="" aria-hidden="true"> Volver</button>
+        </section>
+
+        <section id="result-step" class="result-step" hidden aria-live="assertive">
+          <div id="result-icon" class="result-icon" aria-hidden="true">
+            <img class="result-icon__success" src="./assets/icons/circle-check.svg" alt="">
+            <img class="result-icon__exit" src="./assets/icons/arrow-up-right.svg" alt="">
+            <img class="result-icon__warning" src="./assets/icons/circle-alert.svg" alt="">
+          </div>
+          <p id="result-kicker" class="step-kicker"></p>
+          <h2 id="result-title"></h2>
+          <p id="result-description" class="result-description"></p>
+          <button id="finish-button" class="button button--secondary button--wide" type="button">Finalizar</button>
+        </section>
+
+        <div id="message" class="message" role="alert" hidden></div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span>Control de Acceso <span aria-hidden="true">·</span> Rack de Comunicaciones Morato</span>
+      <span id="current-date"></span>
+    </footer>
+  </body>
+</html>
